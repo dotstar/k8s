@@ -1,0 +1,36 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "2"
+  labels:
+    run: myhttpd
+  name: myhttpd
+  namespace: default
+spec:
+  replicas: 8
+  selector:
+    matchLabels:
+      run: myhttpd
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: myhttpd
+    spec:
+      containers:
+      - image: myhttpd
+        imagePullPolicy: IfNotPresent
+        name: myhttpd
+        ports:
+        - containerPort: 80
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30

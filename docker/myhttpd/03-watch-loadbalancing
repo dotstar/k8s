@@ -1,0 +1,6 @@
+#!/bin/bash
+n=10000
+for i in `seq 1 $n`;
+do
+   curl -s http://127.0.0.1:31806/cgi-bin/hello.cgi | grep host
+done

@@ -1,0 +1,17 @@
+## Deployment scale and rolling upgrade demo
+kubectl run httpd --image=httpd:2.2
+kubectl get pod -o wide
+kubectl scale --replicas=10 deploy/httpd
+kubectl edit deploy httpd
+[ Edit version of container 2.2 -> 2.4 ]
+kubectl get rs -o wide -w
+
+                                                                   
+~                                                                               
+~                                                                               
+~                                                                               
+~                                                                               
+~                                                                               
+~                                                                               
+~                                                                               
+~                                        

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+seconds=$(rand -M 20)	# up to 20 
+
+echo "$(date) process $BASHPID on host $(hostname) sleeping $seconds"
+
+sleep $seconds
+
+echo "$(date) process $BASHPID on host $(hostname) EXITING"
+
+exit 1

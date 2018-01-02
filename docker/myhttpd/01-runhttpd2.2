@@ -1,0 +1,11 @@
+#!/bin/bash
+docker kill myhttpd > /dev/null 2>&0
+docker rm myhttpd > /dev/null 2>&0
+docker run -dit --name myhttpd  -p 8080:80 myhttpd
+exit
+docker run -dit \
+   --name myhttpd  \
+   -p 8080:80 \
+   -v "$PWD"/htdocs:/usr/local/apache2/htdocs/ \
+   -v "$PWD"/cgi-bin:/usr/local/apache2/cgi-bin httpd:2.2 
+

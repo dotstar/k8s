@@ -1,0 +1,29 @@
+# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: 2018-01-02T21:56:10Z
+  labels:
+    run: myhttpd
+  name: myhttpd
+  namespace: default
+  resourceVersion: "83219"
+  selfLink: /api/v1/namespaces/default/services/myhttpd
+  uid: be2f8ef6-f007-11e7-8e78-000c2962d2b0
+spec:
+  clusterIP: 10.107.129.187
+  externalTrafficPolicy: Cluster
+  ports:
+  - nodePort: 31806
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    run: myhttpd
+  sessionAffinity: None
+  type: NodePort
+status:
+  loadBalancer: {}
