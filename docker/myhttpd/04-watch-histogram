@@ -8,7 +8,9 @@ scratchfile=/tmp/scratch.$$
 # Collect the web pages, strip the line with hostname ...
 for i in `seq 1 $pagecount`;
 do
-   curl -s http://127.0.0.1:31806/cgi-bin/hello.cgi | grep host >> $scratchfile
+   curl -s http://127.0.0.1:31806/cgi-bin/hello.cgi | \
+       grep host | \
+       sed 's/^<h3> host: //' | sed 's/ <.*//' >> $scratchfile
 
    # Show some progress to user
    if ! (( $i % 25 )); then
@@ -17,6 +19,6 @@ do
 done
 
 # How many pages came from each host?
-sort $scratchfile | uniq -c
+sort $scratchfile | uniq -c | cat -n
 rm $scratchfile
 
